@@ -1,0 +1,53 @@
+@use './index.scss' as s;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: s.space(3);
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(2);
+  }
+
+  &__error {
+    color: s.color('error');
+    font-size: 14px;
+    display: none;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__submit {
+    @include s.click();
+    padding: s.space(4);
+    background-color: s.color('main');
+    border-radius: 12px;
+    color: s.color('text-additional');
+  }
+
+  &__alert {
+    border: 1px solid transparent;
+    font-size: 14px;
+    padding: s.space(3) s.space(4);
+    border-radius: 12px;
+
+    &--error {
+      color: s.color('error');
+      border: 1px solid s.color('error');
+    }
+
+    &--info {
+      color: s.color('info');
+      border: 1px solid s.color('info');
+    }
+
+    &--success {
+      color: s.color('success');
+      border: 1px solid s.color('success');
+    }
+  }
+}

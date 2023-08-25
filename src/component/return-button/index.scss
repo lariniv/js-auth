@@ -1,0 +1,12 @@
+@use '../../style' as s;
+
+.return-arrow {
+  background-image: url('/svg/back-arrow.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  width: 24px;
+  height: 24px;
+
+  @include s.click();
+}

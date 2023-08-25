@@ -1,0 +1,61 @@
+{{!
+Це код container файлу для index сторінки,
+в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
+}}
+
+<div class="page page--background">
+    <header class="header">
+        {{> return-button}}
+    </header>
+
+
+    <form action="" class="page__section">
+        <h1 class="page__title">Sign up</h1>
+
+        <div class="form">
+            <div class="form__item">
+                {{> field name="email" label="Email" placeholder="example@gmail.com" action="signupForm.change"}}
+                <div class="form__error" name="email">Invalid email</div>
+            </div>
+
+            <div class="form__item">
+                {{> field-select name="role" label="Role" placeholder="Choose your role" list=data.role
+                action="signupForm.change"}}
+            </div>
+
+            <div class="form__item">
+                {{> field-password name="password" label="Password" placeholder="Password" type="password"
+                action="signupForm.change"}}
+                <div class="form__error" name="password">Invalid password</div>
+            </div>
+
+            <div class="form__item">
+                {{> field-password name="passwordConf" label="Confirm password" placeholder="Confirm password"
+                type="password" action="signupForm.change"}}
+                <div class="form__error" name="passwordConf">Passwords do not match </div>
+            </div>
+
+            <div class="form__item">
+                {{> field-checkbox text="You agree with our rules" name="isConfirm" action="signupForm.change"}}
+                <div class="form__error">Passwords do not match </div>
+            </div>
+        </div>
+
+
+
+        <button class="form__submit" onclick="signupForm.submit()" type="button">Sign up</button>
+
+        <span class="form__alert form__alert--error">
+            Error!
+        </span>
+
+    </form>
+
+</div>
+
+{{!
+Цей код містить лише те, що буде виводитись в
+
+<body>
+    Адже наш layout/default.hbs має вже структуру HTML
+    }}
