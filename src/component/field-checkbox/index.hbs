@@ -3,7 +3,7 @@
 	checkbox.toggle(this)
 	
 	{{action}}('{{name}}', this.hasAttribute('active'))
-	" class="field-checkbox__wrapper" type="button" active>
+	" class="field-checkbox__wrapper validation" name={{name}} type="button">
 		<span class="field-checkbox__icon"></span>
 		<span class="field-checkbox__text">{{text}}</span>
 	</button>

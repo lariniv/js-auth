@@ -27,6 +27,17 @@
     background-color: s.color('main');
     border-radius: 12px;
     color: s.color('text-additional');
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: default;
+
+      &:hover,
+      &:active {
+        opacity: 0.5;
+        cursor: default;
+      }
+    }
   }
 
   &__alert {
@@ -49,5 +60,15 @@
       color: s.color('success');
       border: 1px solid s.color('success');
     }
+
+    &--disabled {
+      display: none;
+    }
+  }
+}
+
+.validation {
+  &--active {
+    border: 1px solid s.color('error') !important;
   }
 }

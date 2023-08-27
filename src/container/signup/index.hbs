@@ -21,6 +21,8 @@
             <div class="form__item">
                 {{> field-select name="role" label="Role" placeholder="Choose your role" list=data.role
                 action="signupForm.change"}}
+                <div class="form__error" name="role">Invalid email</div>
+
             </div>
 
             <div class="form__item">
@@ -37,15 +39,15 @@
 
             <div class="form__item">
                 {{> field-checkbox text="You agree with our rules" name="isConfirm" action="signupForm.change"}}
-                <div class="form__error">Passwords do not match </div>
+                <div class="form__error" name="isConfirm">Passwords do not match </div>
             </div>
         </div>
 
 
 
-        <button class="form__submit" onclick="signupForm.submit()" type="button">Sign up</button>
+        <button class="form__submit form__submit--disabled" onclick="signupForm.submit()" type="button">Sign up</button>
 
-        <span class="form__alert form__alert--error">
+        <span class="form__alert form__alert--error form__alert--disabled ">
             Error!
         </span>
 
