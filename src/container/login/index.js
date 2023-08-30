@@ -6,18 +6,15 @@ import {
 
 import { saveSession } from '../../script/session'
 
-class RecoveryConfirmForm extends Form {
+class LoginForm extends Form {
   FIELD_NAME = {
-    CODE: 'code',
+    EMAIL: 'email',
     PASSWORD: 'password',
-    PASSWROD_CONF: 'passwordConf',
   }
   FIELD_ERROR = {
     IS_EMPTY: 'Fill in the field, please',
     IS_BIG: 'Too long',
-    PASSWORD:
-      'Password must contain 8 charaters, including special symbol',
-    PASSWORD_CONF: 'Passwords do not match',
+    EMAIL: 'Enter a valid email',
   }
 
   validate = (name, value) => {
@@ -25,22 +22,13 @@ class RecoveryConfirmForm extends Form {
       return this.FIELD_ERROR.IS_EMPTY
     }
 
-    if (String(value).length > 201) {
+    if (String(value).length > 200) {
       return this.FIELD_ERROR.IS_BIG
     }
 
-    if (name === this.FIELD_NAME.PASSWORD) {
-      if (!REG_EXP_PASSWORD.test(String(value))) {
-        return this.FIELD_ERROR.PASSWORD
-      }
-    }
-
-    if (name === this.FIELD_NAME.PASSWROD_CONF) {
-      if (
-        this.value[this.FIELD_NAME.PASSWORD] !==
-        String(value)
-      ) {
-        return this.FIELD_ERROR.PASSWORD_CONF
+    if (name === this.FIELD_NAME.EMAIL) {
+      if (!REG_EXP_EMAIL.test(String(value))) {
+        return this.FIELD_ERROR.EMAIL
       }
     }
   }
@@ -54,7 +42,7 @@ class RecoveryConfirmForm extends Form {
       this.setAlert('info', 'Loading...')
 
       try {
-        const res = await fetch('/recovery-confirm', {
+        const res = await fetch('/login', {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
@@ -67,6 +55,7 @@ class RecoveryConfirmForm extends Form {
         if (res.ok) {
           this.setAlert('success', data.message)
           saveSession(data.session)
+
           location.assign('/')
         } else this.setAlert('error', data.message)
       } catch (err) {
@@ -77,13 +66,18 @@ class RecoveryConfirmForm extends Form {
 
   convertData = () => {
     return JSON.stringify({
-      [this.FIELD_NAME.CODE]: Number(
-        this.value[this.FIELD_NAME.CODE],
-      ),
+      [this.FIELD_NAME.EMAIL]:
+        this.value[this.FIELD_NAME.EMAIL],
       [this.FIELD_NAME.PASSWORD]:
         this.value[this.FIELD_NAME.PASSWORD],
     })
   }
 }
 
-window.recoveryConfirmForm = new RecoveryConfirmForm()
+window.loginForm = new LoginForm()
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.session) {
+    location.assign('/')
+  }
+})

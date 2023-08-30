@@ -72,3 +72,13 @@
     border: 1px solid s.color('error') !important;
   }
 }
+
+.link {
+  color: s.color('main');
+
+  @include s.click;
+
+  &__prefix {
+    color: s.color('light');
+  }
+}
