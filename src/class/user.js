@@ -31,6 +31,10 @@ class User {
     return role
   }
 
+  static getList = () => {
+    return this.#list
+  }
+
   static create = (data) => {
     const user = new User(data)
 
@@ -47,6 +51,13 @@ class User {
         (user) =>
           user.email === String(email).toLowerCase(),
       ) || null
+    )
+  }
+
+  static getById = (id) => {
+    return (
+      this.#list.find((user) => user.id === Number(id)) ||
+      null
     )
   }
 }
